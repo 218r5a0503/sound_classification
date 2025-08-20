@@ -1,0 +1,16 @@
+services:
+  # A web service
+  - type: web
+    name: audio-classifier
+    # Environment: Python 3
+    env: python
+    # Specify your Python version
+    pythonVersion: "3.10"
+    # The plan for the instance (free tier is great for starting)
+    plan: free
+    # Commands to build your service
+    buildCommand: "pip install -r requirements.txt"
+    # Command to start your web server
+    startCommand: "gunicorn app:app"
+    # Health check path
+    healthCheckPath: /

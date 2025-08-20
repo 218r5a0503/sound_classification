@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Classification</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Audio Classification with Keras</h1>
+
+        <div class="row">
+            <!-- Audio Upload Section -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Upload Audio File</h5>
+                        <form id="upload-form" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="audio-file" accept="audio/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Predict</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Recording Section -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Record Audio</h5>
+                        <button id="record-btn" class="btn btn-danger">Record</button>
+                        <button id="stop-btn" class="btn btn-secondary" disabled>Stop</button>
+                        <audio id="audio-player" controls></audio>
+                        <button type="submit" id="predict-recording-btn" class="btn btn-primary" >Predict Recording</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Result -->
+        <div class="text-center my-4">
+            <h3>Prediction: <span id="prediction-result" class="badge badge-success"></span></h3>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
