@@ -12,7 +12,7 @@ services:
         value: "3.10"
     # Commands to build your service
     buildCommand: "pip install -r requirements.txt"
-    # Command to start your web server
-    startCommand: "gunicorn app:app"
+    # Command to start your web server with an increased timeout
+    startCommand: "gunicorn --timeout 120 app:app"
     # Health check path
     healthCheckPath: /
