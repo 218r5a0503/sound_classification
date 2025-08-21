@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Classification</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to the new stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Audio Classification with Keras</h1>
+        <div class="text-center my-4">
+            <h1>🎤 Audio Classification 🎧</h1>
+            <p class="lead">Upload or record audio to see what the model thinks it is!</p>
+        </div>
 
         <div class="row">
             <!-- Audio Upload Section -->
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Upload Audio File</h5>
+                        <h5 class="card-title">📁 Upload Audio File</h5>
                         <form id="upload-form" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input type="file" class="form-control-file" id="audio-file" accept="audio/*">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="audio-file" accept="audio/*">
+                                <label class="custom-file-label" for="audio-file">Choose file...</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Predict</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-3">Predict Upload</button>
                         </form>
                     </div>
                 </div>
@@ -29,13 +34,15 @@
 
             <!-- Audio Recording Section -->
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Record Audio</h5>
-                        <button id="record-btn" class="btn btn-danger">Record</button>
-                        <button id="stop-btn" class="btn btn-secondary" disabled>Stop</button>
-                        <audio id="audio-player" controls></audio>
-                        <button type="submit" id="predict-recording-btn" class="btn btn-primary" >Predict Recording</button>
+                        <h5 class="card-title">🔴 Record Audio</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <button id="record-btn" class="btn btn-danger">Record</button>
+                            <button id="stop-btn" class="btn btn-secondary" disabled>Stop</button>
+                        </div>
+                        <audio id="audio-player" controls class="w-100 mb-2"></audio>
+                        <button id="predict-recording-btn" class="btn btn-primary btn-block" disabled>Predict Recording</button>
                     </div>
                 </div>
             </div>
@@ -43,7 +50,21 @@
 
         <!-- Prediction Result -->
         <div class="text-center my-4">
-            <h3>Prediction: <span id="prediction-result" class="badge badge-success"></span></h3>
+            <h3>Prediction: <span id="prediction-result" class="badge badge-success p-2">...</span></h3>
+        </div>
+
+        <!-- Supported Classes Section -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-center">Identifiable Sounds</h5>
+                <div class="class-grid">
+                    {% for name in class_names %}
+                        <div class="class-card color-{{ loop.index0 % 10 }}">
+                            {{ name.replace('_', ' ') | title }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
