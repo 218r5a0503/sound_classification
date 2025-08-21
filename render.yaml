@@ -4,10 +4,12 @@ services:
     name: audio-classifier
     # Environment: Python 3
     env: python
-    # Specify your Python version
-    pythonVersion: "3.10"
     # The plan for the instance (free tier is great for starting)
     plan: free
+    # Add environment variables to enforce the Python version
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.10"
     # Commands to build your service
     buildCommand: "pip install -r requirements.txt"
     # Command to start your web server
