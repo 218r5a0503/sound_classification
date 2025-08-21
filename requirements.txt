@@ -4,7 +4,7 @@ gunicorn==21.2.0
 
 
 tensorflow==2.20.0
-torch==2.1.0
+torch==2.5.0
 numpy==1.26.4
 librosa==0.10.1
 soundfile==0.12.1
